@@ -1,10 +1,10 @@
 # smart-measure
 
 ## humidity
-**Volumetric humidity (VH)** can be obtained by ideal gas law  
-___pV = nRT___ with ___n = w/M___  
-i.e. VH: ___w/V = M/R * p/T___  
-p is obtained by saturation vapor pressure (Tetens, 1930) multiplied by **relative humidity (RH)**.
+**Volumetric humidity** (VH) can be obtained by **ideal gas law**  
+_pV = nRT_ with _n = w/M_  
+i.e. VH: _w/V = M/R * p/T_  
+p is obtained by **saturation vapor pressure** (Tetens, 1930) multiplied by **relative humidity** (RH).
 ```
 $ ./humidity.pl
 Usage: humidity.pl -r REL_HUMID -t TEMPERATURE
