@@ -7,7 +7,7 @@ i.e. _w/V = M/R * p/T_
 where p can be calculated by saturation vapor pressure (Tetens, 1930) multiplied by **relative humidity**.
 ```
 $ ./humidity.pl
-Usage: humidity.pl -r REL_HUMID -t TEMPERATURE
+Usage: humidity.pl -t TEMPERATURE -r REL_HUMID
 ```
 ```
 $ ./humidity.pl -t 22.5 -r 30
