@@ -89,7 +89,7 @@ sub transform_humidity {
     # Volumetric humidity can be obtained by ideal gas law
     #  pV = nRT with n = w/M
     #  i.e. w/V = M/R * p/T
-    # and water vapor pressure
+    # and vapor pressure of water
     #  p = eq_p * rel_humid
     my $M = 18.01528; # molar mass of H2O
     my $R = 8.314;
