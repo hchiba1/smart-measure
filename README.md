@@ -1,7 +1,10 @@
 # smart-measure
 
 ## humidity
-Volumetric humidity (VH) can be obtained from relative humidity (RH) by ideal gas law.
+Volumetric humidity (VH) can be obtained by ideal gas law  
+pV = nRT with n = w/M  
+i.e. VH: w/V = M/R * p/T  
+p is saturation vapor pressure (Tetens, 1930) multiplied by relative humidity (RH).
 ```
 $ ./humidity.pl
 Usage: humidity.pl -r REL_HUMID -t TEMPERATURE
@@ -22,3 +25,11 @@ Temp   : 22 (consider 1 degree of error? 21-23)
 ideally RH=55? +4.852 g/m3 -> 10.675 g/m3
 VolHum range : 4.580 - 7.194 g/m3
 ```
+Here RH=55% is expected to be ideal humidity, and the program calculates how much water is necessary to realize it.
+
+### Exprected errors
+Following errors are taken into consideration.
+- 30 <= RH < 70: 5%
+- RH >= 70, RH < 20: 10%
+- 10 <= Temp < 40: 1
+- Temp >= 40, Temp < 10 :2
