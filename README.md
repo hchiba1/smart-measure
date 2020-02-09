@@ -3,7 +3,7 @@
 ## Humidity
 **Volumetric humidity** can be obtained by ideal gas law:  
 _pV = nRT_ with _n = w/M_  
-i.e. VH: _w/V = M/R * p/T_  
+i.e. _w/V = M/R * p/T_  
 where p can be calculated by saturation vapor pressure (Tetens, 1930) multiplied by **relative humidity**.
 ```
 $ ./humidity.pl
