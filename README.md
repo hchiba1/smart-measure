@@ -2,8 +2,8 @@
 
 ## humidity
 Volumetric humidity (VH) can be obtained by ideal gas law  
-pV = nRT with n = w/M  
-i.e. VH: w/V = M/R * p/T  
+_pV = nRT with n = w/M_  
+i.e. VH: _w/V = M/R * p/T_  
 p is obtained by saturation vapor pressure (Tetens, 1930) multiplied by relative humidity (RH).
 ```
 $ ./humidity.pl
