@@ -13,7 +13,7 @@ getopts('t:v:', \%OPT);
 my $t = $OPT{t} || die $USAGE;
 my $vol_humid = $OPT{v} || die $USAGE;
 
-my $rel_humid = transform_humidity($vol_humid, $t);
+my $rel_humid = get_rel_humid($vol_humid, $t);
 printf("RelHum : %.1f %%\n", $rel_humid);
 
 ################################################################################
@@ -21,7 +21,7 @@ printf("RelHum : %.1f %%\n", $rel_humid);
 ################################################################################
 
 # Volumetric humidity can be obtained from relative humidity by ideal gas law
-sub transform_humidity {
+sub get_rel_humid {
     my ($vol_humid, $t) = @_;
     
     # Equilibrium vapor pressure of water by Tetens (1930)
