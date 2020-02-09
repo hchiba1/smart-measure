@@ -6,6 +6,8 @@ my $PROGRAM = basename $0;
 my $USAGE=
 "Usage: $PROGRAM -t TEMPERATURE -r REL_HUMID
 ";
+# Hidden option:
+# -v VOL_HUMID: transform VH to RH (use instead of -r)
 
 my %OPT;
 getopts('r:t:v:', \%OPT);
