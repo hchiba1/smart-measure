@@ -86,7 +86,7 @@ sub transform_humidity {
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
     # the factor is about 6.11
 
-    # Volumetric humidity can be abtained by ideal gas law
+    # Volumetric humidity can be obtained by ideal gas law
     #  pV = nRT with n = w/M
     #  i.e. w/V = M/R * p/T
     # and water vapor pressure
