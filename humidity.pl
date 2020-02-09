@@ -8,9 +8,13 @@ my $USAGE=
 ";
 
 my %OPT;
-getopts('r:t:', \%OPT);
+getopts('r:t:v:', \%OPT);
 
 my $t = $OPT{t} || die $USAGE;
+if ($OPT{v}) {
+    printf("RelHum : %.1f %%\n", get_rel_humid($OPT{v}, $t));
+    exit 1;
+}
 my $rel_humid = $OPT{r} || die $USAGE;
 
 my $vol_humid = transform_humidity($rel_humid, $t);
@@ -96,4 +100,21 @@ sub transform_humidity {
 
     my $vol_humid = $M/$R * ($eq_p * $rel_humid) / ($t + 273.15);
     # M/R is about 2.17
+}
+
+sub get_rel_humid {
+    my ($vol_humid, $t) = @_;
+
+    my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
+
+    # ideal gas law
+    #  pV = nRT with n = w/M
+    # vapor pressure of water
+    #  p = Ps * Hr
+    # i.e. Hv = w/V = M/R * Ps/T * Hr
+    #      Hr = R/M * T/Ps * Hv
+    my $M = 18.01528; # molar mass of H2O
+    my $R = 8.314;
+
+    my $rel_humid = $R/$M * ($t + 273.15) / $eq_p * $vol_humid;
 }
