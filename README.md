@@ -25,7 +25,7 @@ Temp   : 22 (consider 1 degree of error? 21-23)
 ideally RH=55? +4.852 g/m3 -> 10.675 g/m3
 VolHum range : 4.580 - 7.194 g/m3
 ```
-Here RH=55% is expected to be ideal humidity, and the program calculates how much water is necessary to realize it.
+Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
 
 ### Exprected errors
 Following errors are taken into consideration.
