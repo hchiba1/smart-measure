@@ -109,13 +109,9 @@ sub get_rel_humid {
 
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
 
-    # ideal gas law
-    #  pV = nRT with n = w/M
-    # vapor pressure of water
-    #  p = Ps * Hr
-    # i.e. Hv = w/V = M/R * Ps/T * Hr
-    #      Hr = R/M * T/Ps * Hv
-    my $M = 18.01528; # molar mass of H2O
+    # w/V (= Hv) = M/R * Ps/T * Hr
+    # i.e. Hv * R/M * T/Ps = Hr
+    my $M = 18.01528;
     my $R = 8.314;
 
     my $rel_humid = $R/$M * ($t + 273.15) / $eq_p * $vol_humid;
