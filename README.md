@@ -28,10 +28,12 @@ VolHum range : 4.580 - 7.194 g/m3
 Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
 
 ### Exprected errors
-Following errors are taken into consideration.  
+Following errors are taken into consideration.
+
 RH
 - 30 <= RH < 70: 5%
 - RH >= 70, RH < 20: 10%
+
 Temp
 - 10 <= Temp < 40: 1
 - Temp >= 40, Temp < 10 :2
