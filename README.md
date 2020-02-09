@@ -1,29 +1,21 @@
 # smart-measure
 
-## humidity
-Volumetric humidity (VH) can be obtained by ideal gas law  
-pV = nRT with n = w/M  
-i.e. VH: w/V = M/R * p/T  
-p is obtained by saturation vapor pressure (Tetens, 1930) multiplied by relative humidity (RH).
+## Humidity
+**Volumetric humidity** can be obtained by ideal gas law:  
+_pV = nRT_ with _n = w/M_  
+i.e. _w/V = M/R * p/T_  
+where p can be calculated by saturation vapor pressure (Tetens, 1930) multiplied by **relative humidity**.
 ```
 $ ./humidity.pl
 Usage: humidity.pl -r REL_HUMID -t TEMPERATURE
 ```
 ```
-$ ./humidity.pl -t 20 -r 50
-VolHum : 8.641 g/m3 - Dry (7g/m3: 20% flu survive, 11g/m3 -> 5% flu survive)
-RelHum : 50% (consider 5% of error? 45-55%)
-Temp   : 20 (consider 1 degree of error? 19-21)
-ideally RH=55? +0.864 g/m3 -> 9.505 g/m3
-VolHum range : 7.334 - 10.075 g/m3
-```
-```
-$ ./humidity.pl -t 22 -r 30
-VolHum : 5.823 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+$ ./humidity.pl -t 22.5 -r 30
+VolHum : 5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
 RelHum : 30% (consider 5% of error? 25-35%)
-Temp   : 22 (consider 1 degree of error? 21-23)
-ideally RH=55? +4.852 g/m3 -> 10.675 g/m3
-VolHum range : 4.580 - 7.194 g/m3
+Temp   : 22.5 (consider 1 degree of error? 21.5-23.5)
+ideally RH=55? +4.994 g/m3 -> 10.986 g/m3
+VolHum range : 4.714 - 7.402 g/m3
 ```
 Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
 
@@ -38,4 +30,4 @@ Temp
 - 10 <= Temp < 40: 1
 - Temp >= 40, Temp < 10 :2
 
-Accordingly, obtained VH may have error.
+Accordingly, the obtained VH may have error.
