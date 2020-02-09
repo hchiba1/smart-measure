@@ -10,7 +10,7 @@ my $USAGE=
 # -v VOL_HUMID: transform VH to RH (use instead of -r)
 
 my %OPT;
-getopts('r:t:v:', \%OPT);
+getopts('t:r:v:', \%OPT);
 
 my $t = $OPT{t} || die $USAGE;
 if ($OPT{v}) {
