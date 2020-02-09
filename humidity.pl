@@ -10,8 +10,8 @@ my $USAGE=
 my %OPT;
 getopts('r:t:', \%OPT);
 
-my $rel_humid = $OPT{r} || die $USAGE;
 my $t = $OPT{t} || die $USAGE;
+my $rel_humid = $OPT{r} || die $USAGE;
 
 my $vol_humid = transform_humidity($rel_humid, $t);
 printf("VolHum : %.3f g/m3", $vol_humid);
