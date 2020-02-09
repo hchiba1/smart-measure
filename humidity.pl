@@ -78,11 +78,11 @@ printf("VolHum range : %.3f - %.3f g/m3\n", transform_humidity($rel_humid-$perce
 ### Functions ##################################################################
 ################################################################################
 
-# Volumetric humidity can be obtained from relative humidity with ideal gas law
+# Volumetric humidity can be obtained from relative humidity by ideal gas law
 sub transform_humidity {
     my ($rel_humid, $t) = @_;
     
-    # Equilibrium water vapor pressure by Tetens (1930)
+    # Equilibrium vapor pressure of water by Tetens (1930)
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
     # the factor is about 6.11
 
