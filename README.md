@@ -37,3 +37,5 @@ RH
 Temp
 - 10 <= Temp < 40: 1
 - Temp >= 40, Temp < 10 :2
+
+Accordingly, obtained VH may have error.
