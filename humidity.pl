@@ -4,7 +4,7 @@ use File::Basename;
 use Getopt::Std;
 my $PROGRAM = basename $0;
 my $USAGE=
-"Usage: $PROGRAM -r REL_HUMID -t TEMPERATURE
+"Usage: $PROGRAM -t TEMPERATURE -r REL_HUMID
 ";
 
 my %OPT;
