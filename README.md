@@ -25,10 +25,12 @@ Following errors are taken into consideration.
 
 RH
 - 30 <= RH < 70: 5%
-- RH >= 70, RH < 20: 10%
+- RH >= 70, RH < 30: 10%
+- RH > 90, RH < 20: more?
 
 Temp
 - 10 <= Temp < 40: 1
-- Temp >= 40, Temp < 10 :2
+- Temp >= 40, Temp < 10: 2
+- Temp > 50, Temp < 0: more?
 
 Accordingly, the obtained VH may also have error to some extent.
