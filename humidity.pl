@@ -7,14 +7,14 @@ my $USAGE=
 "Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
 -e: output expected errors
 -R TARGET_REL_HUMID: specify target RH
--V TARGET_VOL_HUMID: specify target VH
 ";
 # Hidden option:
 # -a: specify target RH=55
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
+# -V TARGET_VOL_HUMID: specify target VH
 
 my %OPT;
-getopts('t:r:R:V:v:ae', \%OPT);
+getopts('t:r:e:R:av:V:', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
@@ -183,7 +183,6 @@ sub eval_target_vh {
     my ($t, $vol_humid, $idea_vol_humid) = @_;
 
     if ($vol_humid != $idea_vol_humid) {
-        print "aim at VH=$idea_vol_humid? VH: ";
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
