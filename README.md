@@ -30,7 +30,7 @@ Temp=22.5 (consider 1 degree of error? 21.5-23.5)
 RH=30% (consider 5% of error? 25-35%)
 range: 4.714 - 7.402 g/m3
 ```
-Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
+Here _RH=50%_ is considered ideal, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
 - _VH = 5g/m3_ -> 50% flu survive
