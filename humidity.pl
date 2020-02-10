@@ -20,33 +20,14 @@ if ($OPT{v}) {
 my $rel_humid = $OPT{r} || die $USAGE;
 
 my $vol_humid = get_vol_humid($rel_humid, $t);
-printf("VolHum : %.3f g/m3", $vol_humid);
-if ($vol_humid > 17) {
-    print " - Humid (17g/m3 -> no flu survive)\n";
-} elsif ($vol_humid > 11) {
-    print " - Moist (11g/m3 -> 5% flu survive, 17g/m3 -> no flu survie)\n";
-} elsif ($vol_humid > 7) {    
-    print " - Dry (7g/m3: 20% flu survive, 11g/m3 -> 5% flu survive)\n";
-} else {
-    print " - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)\n";
-}
 
-my $idea_rel_humid = 50;
-if ($rel_humid != $idea_rel_humid) {
-    my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
-    print "  aim at $idea_rel_humid%? ";
-    if ($idea_vol_humid >= $vol_humid) {
-        print "+";
-    }
-    printf "%.3f", $idea_vol_humid - $vol_humid;
-    print " g/m3";
-    printf(" -> %.3f g/m3", $idea_vol_humid);
-    print "\n";
-}
+eval_vol_humid($vol_humid);
 
-my $rh_error = print_rel_humid($rel_humid);
+eval_ideal_humid($rel_humid, $vol_humid);
 
-my $t_error = print_temperature($t);
+my $rh_error = eval_rel_humid($rel_humid);
+
+my $t_error = eval_temperature($t);
 
 printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$rh_error, $t-$t_error), get_vol_humid($rel_humid+$rh_error, $t+$t_error));
 
@@ -88,7 +69,7 @@ sub get_rel_humid {
     my $rel_humid = $R/$M * ($t + 273.15) / $eq_p * $vol_humid;
 }
 
-sub print_rel_humid {
+sub eval_rel_humid {
     my ($rel_humid) = @_;
     
     print "RelHum : $rel_humid% (";
@@ -111,7 +92,7 @@ sub print_rel_humid {
     return($percent_error);
 }
 
-sub print_temperature {
+sub eval_temperature {
     my ($t) = @_;
 
     print "Temp   : ${t} (";
@@ -132,4 +113,37 @@ sub print_temperature {
     print ")\n";
 
     return($t_error);
+}
+
+sub eval_vol_humid {
+    my ($vol_humid) = @_;
+
+    printf("VolHum : %.3f g/m3", $vol_humid);
+    if ($vol_humid > 17) {
+        print " - Humid (17g/m3 -> no flu survive)\n";
+    } elsif ($vol_humid > 11) {
+        print " - Moist (11g/m3 -> 5% flu survive, 17g/m3 -> no flu survie)\n";
+    } elsif ($vol_humid > 7) {
+        print " - Dry (7g/m3: 20% flu survive, 11g/m3 -> 5% flu survive)\n";
+    } else {
+        print " - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)\n";
+    }
+}
+
+sub eval_ideal_humid {
+    my ($rel_humid, $vol_humid) = @_;
+
+    my $idea_rel_humid = 50;
+
+    if ($rel_humid != $idea_rel_humid) {
+        my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
+        print "  aim at $idea_rel_humid%? ";
+        if ($idea_vol_humid >= $vol_humid) {
+            print "+";
+        }
+        printf "%.3f", $idea_vol_humid - $vol_humid;
+        print " g/m3";
+        printf(" -> %.3f g/m3", $idea_vol_humid);
+        print "\n";
+    }
 }
