@@ -1,7 +1,7 @@
 # smart-measure
 
 ## Volumetric humidity
-Volumetric humidity (VH) can be obtained from temperature and relative humidity (RH).
+Volumetric humidity (VH) can be calculated from temperature and relative humidity (RH).
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
