@@ -21,7 +21,7 @@ my $rel_humid = $OPT{r} || die $USAGE;
 
 my $vol_humid = get_vol_humid($rel_humid, $t);
 printf("VolHum : %.3f g/m3", $vol_humid);
-if ($vol_humid >= 17) {
+if ($vol_humid > 17) {
     print " - Humid (17g/m3 -> no flu survive)\n";
 } elsif ($vol_humid > 11) {
     print " - Moist (11g/m3 -> 5% flu survive, 17g/m3 -> no flu survie)\n";
