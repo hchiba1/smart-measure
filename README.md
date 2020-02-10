@@ -18,7 +18,7 @@ Temp   : 22.5 (consider 1 degree of error? 21.5-23.5)
 ideally RH=55? +4.994 g/m3 -> 10.986 g/m3
 VolHum range : 4.714 - 7.402 g/m3
 ```
-Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
+Here RH=55% is considered ideal, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
 - VH = 5g/m3 -> 50% flu survive
