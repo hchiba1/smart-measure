@@ -90,18 +90,17 @@ sub get_vol_humid {
     
     # Equilibrium vapor pressure of water by Tetens (1930)
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
-    # the factor is about 6.11
 
     # Volumetric humidity can be obtained by ideal gas law
     #  pV = nRT with n = w/M
     #  i.e. w/V = M/R * p/T
     # and vapor pressure of water
     #  p = eq_p * rel_humid
+    # i.e. vol_humid = M/R * eq_p/T * rel_humid
     my $M = 18.01528; # molar mass of H2O
     my $R = 8.314;
 
     my $vol_humid = $M/$R * ($eq_p * $rel_humid) / ($t + 273.15);
-    # M/R is about 2.17
 }
 
 sub get_rel_humid {
@@ -109,8 +108,7 @@ sub get_rel_humid {
 
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
 
-    # w/V (= Hv) = M/R * Ps/T * Hr
-    # i.e. Hv * R/M * T/Ps = Hr
+    # rel_humid = R/M * T/eq_p * vol_humid
     my $M = 18.01528;
     my $R = 8.314;
 
