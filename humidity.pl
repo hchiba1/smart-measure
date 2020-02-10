@@ -8,7 +8,7 @@ my $USAGE=
 -e: output expected errors
 -R TARGET_REL_HUMID: specify target RH
 ";
-# Hidden option:
+# Hidden options:
 # -a: specify target RH=55
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 # -V TARGET_VOL_HUMID: specify target VH
