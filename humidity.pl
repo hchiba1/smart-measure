@@ -7,13 +7,14 @@ my $USAGE=
 "Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
 -e: output expected errors
 -R TARGET_REL_HUMID: specify target RH
+-V TARGET_VOL_HUMID: specify target VH
 ";
 # Hidden option:
 # -a: specify target RH=55
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 
 my %OPT;
-getopts('t:r:R:v:ae', \%OPT);
+getopts('t:r:R:V:v:ae', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
@@ -43,11 +44,15 @@ printf("range: %.3f - %.3f g/m3\n",
        get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
 
 if ($OPT{a}) {
-    print_ideal_humid($Temp, $RH, 55);
+    eval_target_rh($Temp, $RH, 55);
 }
 
 if ($OPT{R}) {
-    print_ideal_humid($Temp, $RH, $OPT{R});
+    eval_target_rh($Temp, $RH, $OPT{R});
+}
+
+if ($OPT{V}) {
+    eval_target_vh($Temp, $VH, $OPT{V});
 }
 
 ################################################################################
@@ -156,7 +161,7 @@ sub print_vol_humid {
     }
 }
 
-sub print_ideal_humid {
+sub eval_target_rh {
     my ($t, $rel_humid, $idea_rel_humid) = @_;
 
     my $vol_humid = get_vol_humid($rel_humid, $t);
@@ -164,6 +169,21 @@ sub print_ideal_humid {
     if ($rel_humid != $idea_rel_humid) {
         my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
         print "aim at RH=$idea_rel_humid? VH: ";
+        if ($idea_vol_humid >= $vol_humid) {
+            print "+";
+        }
+        printf "%.3f", $idea_vol_humid - $vol_humid;
+        print " g/m3";
+        printf(" -> %.3f g/m3", $idea_vol_humid);
+        print "\n";
+    }
+}
+
+sub eval_target_vh {
+    my ($t, $vol_humid, $idea_vol_humid) = @_;
+
+    if ($vol_humid != $idea_vol_humid) {
+        print "aim at VH=$idea_vol_humid? VH: ";
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
