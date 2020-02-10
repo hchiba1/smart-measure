@@ -31,7 +31,7 @@ Here _RH=55%_ is considered ideal, and the program calculates how much water is 
 ### Formula
 **Volumetric humidity** (VH) can be obtained by ideal gas law:  
 _pV = nRT_ with _n = w/M_  
-i.e. _w/V = M/R * p/T_  
+_i.e. VH_: _w/V = M/R * p/T_  
 where p can be calculated by saturation vapor pressure _E(t)_ (Tetens,1930) multiplied by **relative humidity** (RH).  
 _p = E(t) * RH_  
 _E(t) = 6.1078x10^(7.5t/(t+237.3))_
