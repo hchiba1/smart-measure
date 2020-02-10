@@ -1,13 +1,15 @@
 # smart-measure
 
 ## Volumetric humidity
-Volumetric humidity (VH) can be calculated from temperature and relative humidity (RH).
+
+### Usage
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
 -e: output expected errors
 -R TARGET_REL_HUMID: specify target RH
 ```
+Volumetric humidity (VH) can be calculated from temperature and relative humidity (RH).
 ```
 $ ./humidity.pl -t 22.5 -r 30
 5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
