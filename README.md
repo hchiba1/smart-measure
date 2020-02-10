@@ -30,7 +30,7 @@ $ ./humidity.pl -t 22.5 -r 30 -R 55
 range: 4.714 - 7.402 g/m3
 aim at RH=55? VH: +4.994 g/m3 -> 10.986 g/m3
 ```
-Here _RH=50%_ is considered ideal, and the program calculates how much water is necessary to realize it.
+Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
 - _VH = 5g/m3_ -> 50% flu survive
