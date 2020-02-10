@@ -44,11 +44,11 @@ if ($rel_humid != $idea_rel_humid) {
     print "\n";
 }
 
-my $percent_error = print_rel_humid($rel_humid);
+my $rh_error = print_rel_humid($rel_humid);
 
 my $t_error = print_temperature($t);
 
-printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$percent_error, $t-$t_error), get_vol_humid($rel_humid+$percent_error, $t+$t_error));
+printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$rh_error, $t-$t_error), get_vol_humid($rel_humid+$rh_error, $t+$t_error));
 
 ################################################################################
 ### Functions ##################################################################
