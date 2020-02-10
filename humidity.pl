@@ -5,44 +5,49 @@ use Getopt::Std;
 my $PROGRAM = basename $0;
 my $USAGE=
 "Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
--a: aim at ideal humidity
 -e: output expected errors
+-R TARGET_REL_HUMID: specify target RH
 ";
 # Hidden option:
+# -a: specify target RH=55
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 
 my %OPT;
-getopts('t:r:v:ae', \%OPT);
+getopts('t:r:R:v:ae', \%OPT);
 
 ### Analyze options ###
-my $temp = $OPT{t} || die $USAGE;
+my $Temp = $OPT{t} || die $USAGE;
 
 if ($OPT{v}) {
     # Inverse transformation
-    printf("RH: %.1f %%\n", get_rel_humid($OPT{v}, $temp));
+    printf("RH: %.1f %%\n", get_rel_humid($OPT{v}, $Temp));
     exit 1;
 }
 
-my $rel_humid = $OPT{r} || die $USAGE;
+my $RH = $OPT{r} || die $USAGE;
 
 ### Evaluate input values ###
-my ($temp_error, $tmp_error_msg) = eval_temperature($temp);
-my ($rh_error, $rh_error_msg) = eval_rel_humid($rel_humid);
-my $vol_humid = get_vol_humid($rel_humid, $temp);
+my ($Temp_err, $Temp_err_msg) = eval_temperature($Temp);
+my ($RH_err, $RH_err_msg) = eval_rel_humid($RH);
+my $VH = get_vol_humid($RH, $Temp);
 
-print_vol_humid($vol_humid);
+print_vol_humid($VH);
 
 if ($OPT{e}) {
-    print $tmp_error_msg;
-    print $rh_error_msg;
+    print $Temp_err_msg;
+    print $RH_err_msg;
 }
 
 printf("range: %.3f - %.3f g/m3\n", 
-       get_vol_humid($rel_humid-$rh_error, $temp-$temp_error), 
-       get_vol_humid($rel_humid+$rh_error, $temp+$temp_error));
+       get_vol_humid($RH-$RH_err, $Temp-$Temp_err), 
+       get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
 
 if ($OPT{a}) {
-    print_ideal_humid($rel_humid, $vol_humid, $temp);
+    print_ideal_humid($Temp, $RH, 55);
+}
+
+if ($OPT{R}) {
+    print_ideal_humid($Temp, $RH, $OPT{R});
 }
 
 ################################################################################
@@ -152,9 +157,9 @@ sub print_vol_humid {
 }
 
 sub print_ideal_humid {
-    my ($rel_humid, $vol_humid, $t) = @_;
+    my ($t, $rel_humid, $idea_rel_humid) = @_;
 
-    my $idea_rel_humid = 50;
+    my $vol_humid = get_vol_humid($rel_humid, $t);
 
     if ($rel_humid != $idea_rel_humid) {
         my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
