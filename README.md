@@ -2,7 +2,6 @@
 
 ## Volumetric humidity
 
-### Usage
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
