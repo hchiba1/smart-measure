@@ -72,7 +72,7 @@ sub get_vol_humid {
 sub get_rel_humid {
     my ($vol_humid, $t) = @_;
 
-    # Inverse of get_vol_humid:
+    # Inverse transformation of get_vol_humid:
     #  rel_humid = R/M * T/eq_p * vol_humid
 
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
