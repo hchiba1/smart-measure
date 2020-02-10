@@ -29,7 +29,9 @@ my $rh_error = eval_rel_humid($rel_humid);
 
 my $t_error = eval_temperature($t);
 
-printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$rh_error, $t-$t_error), get_vol_humid($rel_humid+$rh_error, $t+$t_error));
+printf("VolHum range : %.3f - %.3f g/m3\n", 
+       get_vol_humid($rel_humid-$rh_error, $t-$t_error), 
+       get_vol_humid($rel_humid+$rh_error, $t+$t_error));
 
 ################################################################################
 ### Functions ##################################################################
