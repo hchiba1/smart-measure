@@ -65,10 +65,10 @@ print "consider $t_error degree of error? ";
 print $t-$t_error, "-", $t+$t_error;
 print ")\n";
 
-my $idea_rel_humid = 55;
+my $idea_rel_humid = 50;
 if ($rel_humid != $idea_rel_humid) {
     my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
-    print "ideally RH=$idea_rel_humid? ";
+    print "aim at RH=$idea_rel_humid%? ";
     if ($idea_vol_humid >= $vol_humid) {
         print "+";
     }
