@@ -21,10 +21,10 @@ VolHum range : 4.714 - 7.402 g/m3
 Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
-- VH = 5g/m3 -> 50% flu survive
-- VH = 7g/m3 -> 20% flu survive
-- VH = 11g/m3 -> 5% flu survive
-- VH = 17g/m3 -> no flu survive
+- _VH = 5g/m3_ -> 50% flu survive
+- _VH = 7g/m3_ -> 20% flu survive
+- _VH = 11g/m3_ -> 5% flu survive
+- _VH = 17g/m3_ -> no flu survive
 
 Ideally, 11 < VH < 17 g/m3
 - VH <= 7 g/m3 : Very dry
