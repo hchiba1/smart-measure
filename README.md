@@ -1,11 +1,7 @@
 # smart-measure
 
 ## Volumetric humidity
-**Volumetric humidity** (VH) can be obtained by ideal gas law:  
-_pV = nRT_ with _n = w/M_  
-i.e. _w/V = M/R * p/T_  
-where p can be calculated by saturation vapor pressure _E(t)_ (Tetens,1930) multiplied by **relative humidity** (RH).  
-_E(t) = 6.1078x10^(7.5t/(t+237.3))_
+Volumetric humidity (VH) can be obtained from temperature and relative humidity (RH).
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
@@ -31,6 +27,13 @@ range: 4.714 - 7.402 g/m3
 aim at RH=55? VH: +4.994 g/m3 -> 10.986 g/m3
 ```
 Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
+
+### Formula
+**Volumetric humidity** (VH) can be obtained by ideal gas law:  
+_pV = nRT_ with _n = w/M_  
+i.e. _w/V = M/R * p/T_  
+where p can be calculated by saturation vapor pressure _E(t)_ (Tetens,1930) multiplied by **relative humidity** (RH).  
+_E(t) = 6.1078x10^(7.5t/(t+237.3))_
 
 ### Comments about VH
 - _VH = 5g/m3_ -> 50% flu survive
