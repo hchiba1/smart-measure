@@ -19,7 +19,7 @@ my $temp = $OPT{t} || die $USAGE;
 
 if ($OPT{v}) {
     # Inverse transformation
-    printf("RelHum : %.1f %%\n", get_rel_humid($OPT{v}, $temp));
+    printf("RH: %.1f %%\n", get_rel_humid($OPT{v}, $temp));
     exit 1;
 }
 
@@ -32,10 +32,6 @@ my $vol_humid = get_vol_humid($rel_humid, $temp);
 
 print_vol_humid($vol_humid);
 
-if ($OPT{a}) {
-    print_ideal_humid($rel_humid, $vol_humid, $temp);
-}
-
 if ($OPT{e}) {
     print $tmp_error_msg;
     print $rh_error_msg;
@@ -44,6 +40,10 @@ if ($OPT{e}) {
 printf("range: %.3f - %.3f g/m3\n", 
        get_vol_humid($rel_humid-$rh_error, $temp-$temp_error), 
        get_vol_humid($rel_humid+$rh_error, $temp+$temp_error));
+
+if ($OPT{a}) {
+    print_ideal_humid($rel_humid, $vol_humid, $temp);
+}
 
 ################################################################################
 ### Functions ##################################################################
@@ -87,7 +87,7 @@ sub eval_rel_humid {
     my ($rel_humid) = @_;
 
     my $msg = "";
-    $msg .= "RH: $rel_humid% (";
+    $msg .= "RH=$rel_humid% (";
     my $percent_error = 10;
     if ($rel_humid > 90) {
         $msg .= "too high to measure; ";
@@ -114,7 +114,7 @@ sub eval_temperature {
     my ($t) = @_;
 
     my $msg = "";
-    $msg .= "Temp: ${t} (";
+    $msg .= "Temp=${t} (";
     my $t_error = 1;
     if ($t > 50) {
         $msg .= "too high to measure; ";
@@ -139,7 +139,7 @@ sub eval_temperature {
 sub print_vol_humid {
     my ($vol_humid) = @_;
 
-    printf("VH: %.3f g/m3", $vol_humid);
+    printf("%.3f g/m3", $vol_humid);
     if ($vol_humid > 17) {
         print " - Humid (17g/m3 -> no flu survive)\n";
     } elsif ($vol_humid > 11) {
@@ -158,7 +158,7 @@ sub print_ideal_humid {
 
     if ($rel_humid != $idea_rel_humid) {
         my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
-        print "aim at RH=$idea_rel_humid%? ";
+        print "aim at RH=$idea_rel_humid? VH: ";
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
