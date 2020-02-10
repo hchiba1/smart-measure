@@ -1,6 +1,6 @@
 # smart-measure
 
-## Humidity
+## Volumetric humidity
 **Volumetric humidity** (VH) can be obtained by ideal gas law:  
 _pV = nRT_ with _n = w/M_  
 i.e. _w/V = M/R * p/T_  
