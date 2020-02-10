@@ -21,7 +21,7 @@ VolHum range : 4.714 - 7.402 g/m3
 Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
-Ideally, VH >= 11
+Ideally, VH > 11 g/m3
 - VH <= 7 g/m3 : Very dry
 - VH <= 11 g/m3 : Dry
 - VH < 17 g/m3 : Moist
