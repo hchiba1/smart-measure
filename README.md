@@ -26,7 +26,7 @@ Here RH=55% is considered ideal, and the program calculates how much water is ne
 - VH = 11g/m3 -> 5% flu survive
 - VH = 17g/m3 -> no flu survive
 
-Ideally, 11 < VH < 17 g/m3
+Ideally, 11 < VH <= 17 g/m3
 - VH <= 7 g/m3 : Very dry
 - 7 < VH <= 11 g/m3 : Dry
 - 11 < VH <= 17 g/m3 : Moist
