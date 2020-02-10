@@ -29,8 +29,8 @@ Here RH=55% is considered ideal, and the program calculates how much water is ne
 Ideally, 11 < VH < 17 g/m3
 - VH <= 7 g/m3 : Very dry
 - 7 < VH <= 11 g/m3 : Dry
-- 11 < VH < 17 g/m3 : Moist
-- VH >= 17 g/m3 : Humid
+- 11 < VH <= 17 g/m3 : Moist
+- VH > 17 g/m3 : Humid
 
 ### Exprected errors
 Following errors are taken into consideration. (It depends on sensors used.)
