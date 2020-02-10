@@ -4,34 +4,46 @@ use File::Basename;
 use Getopt::Std;
 my $PROGRAM = basename $0;
 my $USAGE=
-"Usage: $PROGRAM -t TEMPERATURE -r REL_HUMID
+"Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
+-a: aim at ideal humidity
+-e: output expected errors
 ";
 # Hidden option:
-# -v VOL_HUMID: transform VH to RH (use instead of -r)
+# -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 
 my %OPT;
-getopts('t:r:v:', \%OPT);
+getopts('t:r:v:ae', \%OPT);
 
-my $t = $OPT{t} || die $USAGE;
+### Analyze options ###
+my $temp = $OPT{t} || die $USAGE;
+
 if ($OPT{v}) {
-    printf("RelHum : %.1f %%\n", get_rel_humid($OPT{v}, $t));
+    # Inverse transformation
+    printf("RelHum : %.1f %%\n", get_rel_humid($OPT{v}, $temp));
     exit 1;
 }
+
 my $rel_humid = $OPT{r} || die $USAGE;
 
-my $vol_humid = get_vol_humid($rel_humid, $t);
+### Evaluate input values ###
+my ($temp_error, $tmp_error_msg) = eval_temperature($temp);
+my ($rh_error, $rh_error_msg) = eval_rel_humid($rel_humid);
+my $vol_humid = get_vol_humid($rel_humid, $temp);
 
 print_vol_humid($vol_humid);
 
-print_ideal_humid($rel_humid, $vol_humid);
+if ($OPT{a}) {
+    print_ideal_humid($rel_humid, $vol_humid, $temp);
+}
 
-my $rh_error = eval_rel_humid($rel_humid);
+if ($OPT{e}) {
+    print $tmp_error_msg;
+    print $rh_error_msg;
+}
 
-my $t_error = eval_temperature($t);
-
-printf("VolHum range : %.3f - %.3f g/m3\n", 
-       get_vol_humid($rel_humid-$rh_error, $t-$t_error), 
-       get_vol_humid($rel_humid+$rh_error, $t+$t_error));
+printf("range: %.3f - %.3f g/m3\n", 
+       get_vol_humid($rel_humid-$rh_error, $temp-$temp_error), 
+       get_vol_humid($rel_humid+$rh_error, $temp+$temp_error));
 
 ################################################################################
 ### Functions ##################################################################
@@ -73,11 +85,12 @@ sub get_rel_humid {
 
 sub eval_rel_humid {
     my ($rel_humid) = @_;
-    
-    print "RelHum : $rel_humid% (";
+
+    my $msg = "";
+    $msg .= "RH: $rel_humid% (";
     my $percent_error = 10;
     if ($rel_humid > 90) {
-        print "too high to measure; ";
+        $msg .= "too high to measure; ";
     } elsif ($rel_humid >= 70) {
         $percent_error = 10
     } elsif ($rel_humid >= 30) {
@@ -85,22 +98,26 @@ sub eval_rel_humid {
     } elsif ($rel_humid >= 20) {
         $percent_error = 10;
     } else {
-        print "too low to measure; ";
+        $msg .= "too low to measure; ";
     }
-    print "consider $percent_error% of error? ";
-    print $rel_humid-$percent_error, "-", $rel_humid+$percent_error, "%";
-    print ")\n";
+    $msg .= "consider $percent_error% of error? ";
+    $msg .= $rel_humid-$percent_error;
+    $msg .= "-";
+    $msg .= $rel_humid+$percent_error;
+    $msg .= "%";
+    $msg .= ")\n";
 
-    return($percent_error);
+    return($percent_error, $msg);
 }
 
 sub eval_temperature {
     my ($t) = @_;
 
-    print "Temp   : ${t} (";
+    my $msg = "";
+    $msg .= "Temp: ${t} (";
     my $t_error = 1;
     if ($t > 50) {
-        print "too high to measure; ";
+        $msg .= "too high to measure; ";
     } elsif ($t >= 40) {
         $t_error = 2;
     } elsif ($t >= 10) {
@@ -108,19 +125,21 @@ sub eval_temperature {
     } elsif ($t >= 0) {
         $t_error = 2;
     } else {
-        print "too low to measure; ";
+        $msg .= "too low to measure; ";
     }
-    print "consider $t_error degree of error? ";
-    print $t-$t_error, "-", $t+$t_error;
-    print ")\n";
+    $msg .= "consider $t_error degree of error? ";
+    $msg .= $t-$t_error;
+    $msg .= "-";
+    $msg .= $t+$t_error;
+    $msg .= ")\n";
 
-    return($t_error);
+    return($t_error, $msg);
 }
 
 sub print_vol_humid {
     my ($vol_humid) = @_;
 
-    printf("VolHum : %.3f g/m3", $vol_humid);
+    printf("VH: %.3f g/m3", $vol_humid);
     if ($vol_humid > 17) {
         print " - Humid (17g/m3 -> no flu survive)\n";
     } elsif ($vol_humid > 11) {
@@ -133,13 +152,13 @@ sub print_vol_humid {
 }
 
 sub print_ideal_humid {
-    my ($rel_humid, $vol_humid) = @_;
+    my ($rel_humid, $vol_humid, $t) = @_;
 
     my $idea_rel_humid = 50;
 
     if ($rel_humid != $idea_rel_humid) {
         my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
-        print "  aim at $idea_rel_humid%? ";
+        print "aim at RH=$idea_rel_humid%? ";
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
