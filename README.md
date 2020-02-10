@@ -26,10 +26,10 @@ Here RH=55% is considered as ideal humidity, and the program calculates how much
 - VH < 17 g/m3 : Moist
 - VH >= 17 g/m3 : Humid
 
-- 5g/m3 -> 50% flu survive
-- 7g/m3 -> 20% flu survive
-- 11g/m3 -> 5% flu survive
-- 17g/m3 -> no flu survive
+- VH = 5g/m3 -> 50% flu survive
+- VH = 7g/m3 -> 20% flu survive
+- VH = 11g/m3 -> 5% flu survive
+- VH = 17g/m3 -> no flu survive
 
 ### Exprected errors
 Following errors are taken into consideration.
