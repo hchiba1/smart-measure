@@ -33,7 +33,7 @@ Ideally, 11 < VH < 17 g/m3
 - VH >= 17 g/m3 : Humid
 
 ### Exprected errors
-Following errors are taken into consideration.
+Following errors are taken into consideration. (It depends on sensors.)
 
 RH
 - 30 <= RH < 70: 5%
