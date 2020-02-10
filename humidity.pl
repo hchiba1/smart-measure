@@ -44,24 +44,9 @@ if ($rel_humid != $idea_rel_humid) {
     print "\n";
 }
 
-print_rel_humid();
+my $percent_error = print_rel_humid($rel_humid);
 
-print "Temp   : ${t} (";
-my $t_error = 1;
-if ($t > 50) {
-    print "too high to measure; ";
-} elsif ($t >= 40) {
-    $t_error = 2;
-} elsif ($t >= 10) {
-    $t_error = 1;
-} elsif ($t >= 0) {
-    $t_error = 2;
-} else {
-    print "too low to measure; ";
-}
-print "consider $t_error degree of error? ";
-print $t-$t_error, "-", $t+$t_error;
-print ")\n";
+my $t_error = print_temperature($t);
 
 printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$percent_error, $t-$t_error), get_vol_humid($rel_humid+$percent_error, $t+$t_error));
 
@@ -122,4 +107,29 @@ sub print_rel_humid {
     print "consider $percent_error% of error? ";
     print $rel_humid-$percent_error, "-", $rel_humid+$percent_error, "%";
     print ")\n";
+
+    return($percent_error);
+}
+
+sub print_temperature {
+    my ($t) = @_;
+
+    print "Temp   : ${t} (";
+    my $t_error = 1;
+    if ($t > 50) {
+        print "too high to measure; ";
+    } elsif ($t >= 40) {
+        $t_error = 2;
+    } elsif ($t >= 10) {
+        $t_error = 1;
+    } elsif ($t >= 0) {
+        $t_error = 2;
+    } else {
+        print "too low to measure; ";
+    }
+    print "consider $t_error degree of error? ";
+    print $t-$t_error, "-", $t+$t_error;
+    print ")\n";
+
+    return($t_error);
 }
