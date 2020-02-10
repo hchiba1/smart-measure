@@ -21,16 +21,16 @@ VolHum range : 4.714 - 7.402 g/m3
 Here RH=55% is considered as ideal humidity, and the program calculates how much water is necessary to realize it.
 
 ### Comments about VH
-- VH <= 7 g/m3 : Very dry
-- VH <= 11 g/m3 : Dry
-- VH < 17 g/m3 : Moist
-- VH >= 17 g/m3 : Humid
-
-Ideally, VH > 11 g/m3
 - VH = 5g/m3 -> 50% flu survive
 - VH = 7g/m3 -> 20% flu survive
 - VH = 11g/m3 -> 5% flu survive
 - VH = 17g/m3 -> no flu survive
+
+Ideally, VH > 11 g/m3
+- VH <= 7 g/m3 : Very dry
+- VH <= 11 g/m3 : Dry
+- VH < 17 g/m3 : Moist
+- VH >= 17 g/m3 : Humid
 
 ### Exprected errors
 Following errors are taken into consideration.
