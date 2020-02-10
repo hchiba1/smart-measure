@@ -44,22 +44,7 @@ if ($rel_humid != $idea_rel_humid) {
     print "\n";
 }
 
-print "RelHum : $rel_humid% (";
-my $percent_error = 10;
-if ($rel_humid > 90) {
-    print "too high to measure; ";
-} elsif ($rel_humid >= 70) {
-    $percent_error = 10
-} elsif ($rel_humid >= 30) {
-    $percent_error = 5;
-} elsif ($rel_humid >= 20) {
-    $percent_error = 10;
-} else {
-    print "too low to measure; ";
-}
-print "consider $percent_error% of error? ";
-print $rel_humid-$percent_error, "-", $rel_humid+$percent_error, "%";
-print ")\n";
+print_rel_humid();
 
 print "Temp   : ${t} (";
 my $t_error = 1;
@@ -116,4 +101,25 @@ sub get_rel_humid {
     my $R = 8.314;
 
     my $rel_humid = $R/$M * ($t + 273.15) / $eq_p * $vol_humid;
+}
+
+sub print_rel_humid {
+    my ($rel_humid) = @_;
+    
+    print "RelHum : $rel_humid% (";
+    my $percent_error = 10;
+    if ($rel_humid > 90) {
+        print "too high to measure; ";
+    } elsif ($rel_humid >= 70) {
+        $percent_error = 10
+    } elsif ($rel_humid >= 30) {
+        $percent_error = 5;
+    } elsif ($rel_humid >= 20) {
+        $percent_error = 10;
+    } else {
+        print "too low to measure; ";
+    }
+    print "consider $percent_error% of error? ";
+    print $rel_humid-$percent_error, "-", $rel_humid+$percent_error, "%";
+    print ")\n";
 }
