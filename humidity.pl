@@ -21,9 +21,9 @@ my $rel_humid = $OPT{r} || die $USAGE;
 
 my $vol_humid = get_vol_humid($rel_humid, $t);
 
-eval_vol_humid($vol_humid);
+print_vol_humid($vol_humid);
 
-eval_ideal_humid($rel_humid, $vol_humid);
+print_ideal_humid($rel_humid, $vol_humid);
 
 my $rh_error = eval_rel_humid($rel_humid);
 
@@ -115,7 +115,7 @@ sub eval_temperature {
     return($t_error);
 }
 
-sub eval_vol_humid {
+sub print_vol_humid {
     my ($vol_humid) = @_;
 
     printf("VolHum : %.3f g/m3", $vol_humid);
@@ -130,7 +130,7 @@ sub eval_vol_humid {
     }
 }
 
-sub eval_ideal_humid {
+sub print_ideal_humid {
     my ($rel_humid, $vol_humid) = @_;
 
     my $idea_rel_humid = 50;
