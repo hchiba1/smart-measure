@@ -31,6 +31,19 @@ if ($vol_humid > 17) {
     print " - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)\n";
 }
 
+my $idea_rel_humid = 50;
+if ($rel_humid != $idea_rel_humid) {
+    my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
+    print "  aim at $idea_rel_humid%? ";
+    if ($idea_vol_humid >= $vol_humid) {
+        print "+";
+    }
+    printf "%.3f", $idea_vol_humid - $vol_humid;
+    print " g/m3";
+    printf(" -> %.3f g/m3", $idea_vol_humid);
+    print "\n";
+}
+
 print "RelHum : $rel_humid% (";
 my $percent_error = 10;
 if ($rel_humid > 90) {
@@ -64,19 +77,6 @@ if ($t > 50) {
 print "consider $t_error degree of error? ";
 print $t-$t_error, "-", $t+$t_error;
 print ")\n";
-
-my $idea_rel_humid = 50;
-if ($rel_humid != $idea_rel_humid) {
-    my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
-    print "aim at RH=$idea_rel_humid%? ";
-    if ($idea_vol_humid >= $vol_humid) {
-        print "+";
-    }
-    printf "%.3f", $idea_vol_humid - $vol_humid;
-    print " g/m3";
-    printf(" -> %.3f g/m3", $idea_vol_humid);
-    print "\n";
-}
 
 printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$percent_error, $t-$t_error), get_vol_humid($rel_humid+$percent_error, $t+$t_error));
 
