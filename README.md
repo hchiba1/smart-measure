@@ -1,10 +1,10 @@
 # smart-measure
 
 ## Humidity
-**Volumetric humidity** can be obtained by ideal gas law:  
+**Volumetric humidity** (_VH_) can be obtained by ideal gas law: 
 _pV = nRT_ with _n = w/M_  
 i.e. _w/V = M/R * p/T_  
-where p can be calculated by saturation vapor pressure _E(t)_ (Tetens, 1930) multiplied by **relative humidity**.  
+where p can be calculated by saturation vapor pressure _E(t)_ (Tetens,1930) multiplied by **relative humidity** (_RH_). 
 _E(t) = 6.1078x10^(7.5t/(t+237.3))_
 ```
 $ ./humidity.pl
@@ -27,22 +27,22 @@ Here _RH=55%_ is considered ideal, and the program calculates how much water is 
 - _VH = 17g/m3_ -> no flu survive
 
 Ideally, 11 < VH < 17 g/m3
-- VH <= 7 g/m3 : Very dry
-- 7 < VH <= 11 g/m3 : Dry
-- 11 < VH <= 17 g/m3 : Moist
-- VH > 17 g/m3 : Humid
+- _VH <= 7 g/m3_ : Very dry
+- _7 < VH <= 11 g/m3_ : Dry
+- _11 < VH <= 17 g/m3_ : Moist
+- _VH > 17 g/m3_ : Humid
 
 ### Exprected errors
 Following errors are taken into consideration. (It depends on sensors used.)
 
-RH
-- 30 <= RH < 70: 5%
-- RH >= 70, RH < 30: 10%
-- RH > 90, RH < 20: more?
+_RH_
+- _30 <= RH < 70_: 5%
+- _RH >= 70, RH < 30_: 10%
+- _RH > 90, RH < 20_: more?
 
-Temp
-- 10 <= Temp < 40: 1
-- Temp >= 40, Temp < 10: 2
-- Temp > 50, Temp < 0: more?
+_Temp_
+- _10 <= Temp < 40_: 1
+- _Temp >= 40, Temp < 10_: 2
+- _Temp > 50, Temp < 0_: more?
 
 Accordingly, the obtained VH may also have error to some extent.
