@@ -19,7 +19,7 @@ if ($OPT{v}) {
 }
 my $rel_humid = $OPT{r} || die $USAGE;
 
-my $vol_humid = transform_humidity($rel_humid, $t);
+my $vol_humid = get_vol_humid($rel_humid, $t);
 printf("VolHum : %.3f g/m3", $vol_humid);
 if ($vol_humid >= 17) {
     print " - Humid (17g/m3 -> no flu survie)\n";
@@ -67,7 +67,7 @@ print ")\n";
 
 my $idea_rel_humid = 55;
 if ($rel_humid != $idea_rel_humid) {
-    my $idea_vol_humid = transform_humidity($idea_rel_humid, $t);
+    my $idea_vol_humid = get_vol_humid($idea_rel_humid, $t);
     print "ideally RH=$idea_rel_humid? ";
     if ($idea_vol_humid >= $vol_humid) {
         print "+";
@@ -78,14 +78,14 @@ if ($rel_humid != $idea_rel_humid) {
     print "\n";
 }
 
-printf("VolHum range : %.3f - %.3f g/m3\n", transform_humidity($rel_humid-$percent_error, $t-$t_error), transform_humidity($rel_humid+$percent_error, $t+$t_error));
+printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$percent_error, $t-$t_error), get_vol_humid($rel_humid+$percent_error, $t+$t_error));
 
 ################################################################################
 ### Functions ##################################################################
 ################################################################################
 
 # Volumetric humidity can be obtained from relative humidity by ideal gas law
-sub transform_humidity {
+sub get_vol_humid {
     my ($rel_humid, $t) = @_;
     
     # Equilibrium vapor pressure of water by Tetens (1930)
