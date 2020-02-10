@@ -14,7 +14,20 @@ Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
 ```
 ```
 $ ./humidity.pl -t 22.5 -r 30
-VH: 5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+range: 4.714 - 7.402 g/m3
+```
+```
+$ ./humidity.pl -t 22.5 -r 30 -a
+5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+range: 4.714 - 7.402 g/m3
+aim at RH=50? VH: +3.995 g/m3 -> 9.987 g/m3
+```
+```
+$ ./humidity.pl -t 22.5 -r 30 -e
+5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+Temp=22.5 (consider 1 degree of error? 21.5-23.5)
+RH=30% (consider 5% of error? 25-35%)
 range: 4.714 - 7.402 g/m3
 ```
 Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
