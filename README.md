@@ -8,15 +8,14 @@ where p can be calculated by saturation vapor pressure _E(t)_ (Tetens,1930) mult
 _E(t) = 6.1078x10^(7.5t/(t+237.3))_
 ```
 $ ./humidity.pl
-Usage: humidity.pl -t TEMPERATURE -r REL_HUMID
+Usage: humidity.pl [options] -t TEMPERATURE -r REL_HUMID
+-a: aim at ideal humidity
+-e: output expected errors
 ```
 ```
 $ ./humidity.pl -t 22.5 -r 30
-VolHum : 5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
-RelHum : 30% (consider 5% of error? 25-35%)
-Temp   : 22.5 (consider 1 degree of error? 21.5-23.5)
-ideally RH=55? +4.994 g/m3 -> 10.986 g/m3
-VolHum range : 4.714 - 7.402 g/m3
+VH: 5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+range: 4.714 - 7.402 g/m3
 ```
 Here _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
 
