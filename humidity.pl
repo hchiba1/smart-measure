@@ -14,7 +14,7 @@ my $USAGE=
 # -V TARGET_VOL_HUMID: specify target VH
 
 my %OPT;
-getopts('t:r:e:R:av:V:', \%OPT);
+getopts('t:r:eR:av:V:', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
@@ -77,6 +77,8 @@ sub get_vol_humid {
     my $R = 8.314;
 
     my $vol_humid = $M/$R * ($eq_p * $rel_humid) / ($t + 273.15);
+
+    return($vol_humid);
 }
 
 sub get_rel_humid {
@@ -91,6 +93,8 @@ sub get_rel_humid {
     my $R = 8.314;
 
     my $rel_humid = $R/$M * ($t + 273.15) / $eq_p * $vol_humid;
+
+    return($rel_humid);
 }
 
 sub eval_rel_humid {
