@@ -28,8 +28,8 @@ Here RH=55% is considered as ideal humidity, and the program calculates how much
 
 Ideally, VH > 11 g/m3
 - VH <= 7 g/m3 : Very dry
-- VH <= 11 g/m3 : Dry
-- VH < 17 g/m3 : Moist
+- 7 < VH <= 11 g/m3 : Dry
+- 11 < VH < 17 g/m3 : Moist
 - VH >= 17 g/m3 : Humid
 
 ### Exprected errors
