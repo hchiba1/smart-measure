@@ -87,9 +87,6 @@ printf("VolHum range : %.3f - %.3f g/m3\n", get_vol_humid($rel_humid-$percent_er
 # Volumetric humidity can be obtained from relative humidity by ideal gas law
 sub get_vol_humid {
     my ($rel_humid, $t) = @_;
-    
-    # Equilibrium vapor pressure of water by Tetens (1930)
-    my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
 
     # Volumetric humidity can be obtained by ideal gas law
     #  pV = nRT with n = w/M
@@ -97,6 +94,10 @@ sub get_vol_humid {
     # and vapor pressure of water
     #  p = eq_p * rel_humid
     # i.e. vol_humid = M/R * eq_p/T * rel_humid
+
+    # Equilibrium vapor pressure of water by Tetens (1930)
+    my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
+
     my $M = 18.01528; # molar mass of H2O
     my $R = 8.314;
 
@@ -106,9 +107,11 @@ sub get_vol_humid {
 sub get_rel_humid {
     my ($vol_humid, $t) = @_;
 
+    # Inverse of get_vol_humid:
+    #  rel_humid = R/M * T/eq_p * vol_humid
+
     my $eq_p = 6.1078 * 10 ** ((7.5 * $t) / ($t + 237.3));
 
-    # rel_humid = R/M * T/eq_p * vol_humid
     my $M = 18.01528;
     my $R = 8.314;
 
