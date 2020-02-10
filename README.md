@@ -30,4 +30,4 @@ Temp
 - 10 <= Temp < 40: 1
 - Temp >= 40, Temp < 10 :2
 
-Accordingly, the obtained VH may have error to some extent.
+Accordingly, the obtained VH may also have error to some extent.
