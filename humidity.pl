@@ -10,7 +10,7 @@ my $USAGE=
 -M TARGET_CUBIC_METER: specify room volume
 ";
 # Hidden options:
-# -a: specify target RH=55
+# -a: specify target RH=50
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 # -V TARGET_VOL_HUMID: specify target VH
 
@@ -40,12 +40,12 @@ if ($OPT{e}) {
     print $RH_err_msg;
 }
 
-printf("range: %.3f - %.3f g/m3\n", 
+printf("range: %.2f - %.2f g/m3\n", 
        get_vol_humid($RH-$RH_err, $Temp-$Temp_err), 
        get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
 
 if ($OPT{a}) {
-    eval_target_rh($Temp, $RH, 55);
+    eval_target_rh($Temp, $RH, 50);
 }
 
 if ($OPT{R}) {
@@ -154,7 +154,7 @@ sub eval_temperature {
 sub print_vol_humid {
     my ($vol_humid) = @_;
 
-    printf("%.3f g/m3", $vol_humid);
+    printf("%.2f g/m3", $vol_humid);
     if ($vol_humid > 17) {
         print " - Humid (17g/m3 -> no flu survive)\n";
     } elsif ($vol_humid > 11) {
@@ -178,10 +178,7 @@ sub eval_target_rh {
             print "+";
         }
         my $vh_diff = $idea_vol_humid - $vol_humid;
-        printf "%.3f", $vh_diff;
-        print " g/m3";
-        printf(" -> %.3f g/m3", $idea_vol_humid);
-        print "\n";
+        printf "%.2f g/m3 -> %.2f g/m3\n", $vh_diff, $idea_vol_humid;
     }
 }
 
@@ -193,14 +190,14 @@ sub eval_target_vh {
             print "+";
         }
         my $vh_diff = $idea_vol_humid - $vol_humid;
-        printf "%.3f g/m3 -> %.3f g/m3", $vh_diff, $idea_vol_humid;
+        printf "%.2f g/m3 -> %.1f g/m3", $vh_diff, $idea_vol_humid;
         if ($OPT{M}) {
             my $volume = $OPT{M};
             print " (";
             if ($idea_vol_humid >= $vol_humid) {
                 print "+";
             }
-            printf "%.2f L for %.1f m3 room)", $vh_diff * $volume / 1000, $volume;
+            printf "%.2fL for %.1fm3)", $vh_diff * $volume / 1000, $volume;
         }
         print "\n";
     }
