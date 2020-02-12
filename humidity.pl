@@ -95,8 +95,7 @@ sub get_rel_humid {
 sub eval_rel_humid {
     my ($rel_humid) = @_;
 
-    my $msg = "";
-    $msg .= "RH=$rel_humid% (";
+    my $msg = "(";
     my $percent_error = 10;
     if ($rel_humid > 90) {
         $msg .= "too high to measure; ";
@@ -109,12 +108,11 @@ sub eval_rel_humid {
     } else {
         $msg .= "too low to measure; ";
     }
-    $msg .= "consider $percent_error% of error? ";
+    $msg .= "$percent_error% of error for RH=$rel_humid%: ";
     $msg .= $rel_humid-$percent_error;
     $msg .= "-";
     $msg .= $rel_humid+$percent_error;
-    $msg .= "%";
-    $msg .= ")\n";
+    $msg .= "%)\n";
 
     return($percent_error, $msg);
 }
@@ -122,8 +120,7 @@ sub eval_rel_humid {
 sub eval_temperature {
     my ($t) = @_;
 
-    my $msg = "";
-    $msg .= "Temp=${t} (";
+    my $msg = "(";
     my $t_error = 1;
     if ($t > 50) {
         $msg .= "too high to measure; ";
@@ -136,7 +133,7 @@ sub eval_temperature {
     } else {
         $msg .= "too low to measure; ";
     }
-    $msg .= "consider $t_error degree of error? ";
+    $msg .= "$t_error degree of error for Temp=${t}: ";
     $msg .= $t-$t_error;
     $msg .= "-";
     $msg .= $t+$t_error;
