@@ -7,6 +7,7 @@ my $USAGE=
 "Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
 -e: output expected errors
 -R TARGET_REL_HUMID: specify target RH
+-M TARGET_CUBIC_METER: specify room volume
 ";
 # Hidden options:
 # -a: specify target RH=55
@@ -14,7 +15,7 @@ my $USAGE=
 # -V TARGET_VOL_HUMID: specify target VH
 
 my %OPT;
-getopts('t:r:eR:av:V:', \%OPT);
+getopts('t:r:eR:M:av:V:', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
@@ -176,7 +177,8 @@ sub eval_target_rh {
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
-        printf "%.3f", $idea_vol_humid - $vol_humid;
+        my $vh_diff = $idea_vol_humid - $vol_humid;
+        printf "%.3f", $vh_diff;
         print " g/m3";
         printf(" -> %.3f g/m3", $idea_vol_humid);
         print "\n";
@@ -190,9 +192,16 @@ sub eval_target_vh {
         if ($idea_vol_humid >= $vol_humid) {
             print "+";
         }
-        printf "%.3f", $idea_vol_humid - $vol_humid;
-        print " g/m3";
-        printf(" -> %.3f g/m3", $idea_vol_humid);
+        my $vh_diff = $idea_vol_humid - $vol_humid;
+        printf "%.3f g/m3 -> %.3f g/m3", $vh_diff, $idea_vol_humid;
+        if ($OPT{M}) {
+            my $volume = $OPT{M};
+            print " (";
+            if ($idea_vol_humid >= $vol_humid) {
+                print "+";
+            }
+            printf "%.2f L for %.1f m3 room)", $vh_diff * $volume / 1000, $volume;
+        }
         print "\n";
     }
 }
