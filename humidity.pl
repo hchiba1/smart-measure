@@ -10,12 +10,11 @@ my $USAGE=
 -M TARGET_CUBIC_METER: specify room volume
 ";
 # Hidden options:
-# -a: specify target RH=50
 # -v VOL_HUMID: inverse transformation to RH (use instead of -r)
 # -V TARGET_VOL_HUMID: specify target VH
 
 my %OPT;
-getopts('t:r:eR:M:av:V:', \%OPT);
+getopts('t:r:eR:M:v:V:', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
@@ -29,23 +28,18 @@ if ($OPT{v}) {
 my $RH = $OPT{r} || die $USAGE;
 
 ### Evaluate input values ###
-my ($Temp_err, $Temp_err_msg) = eval_temperature($Temp);
-my ($RH_err, $RH_err_msg) = eval_rel_humid($RH);
 my $VH = get_vol_humid($RH, $Temp);
 
 print_vol_humid($VH);
 
 if ($OPT{e}) {
+    my ($Temp_err, $Temp_err_msg) = eval_temperature($Temp);
+    my ($RH_err, $RH_err_msg) = eval_rel_humid($RH);
     print $Temp_err_msg;
     print $RH_err_msg;
-}
-
-printf("range: %.2f - %.2f g/m3\n", 
-       get_vol_humid($RH-$RH_err, $Temp-$Temp_err), 
-       get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
-
-if ($OPT{a}) {
-    eval_target_rh($Temp, $RH, 50);
+    printf("range: %.2f - %.2f g/m3\n", 
+           get_vol_humid($RH-$RH_err, $Temp-$Temp_err), 
+           get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
 }
 
 if ($OPT{R}) {
