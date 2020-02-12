@@ -10,18 +10,18 @@ my $USAGE=
 -M TARGET_CUBIC_METER: specify room volume
 ";
 # Hidden options:
-# -v VOL_HUMID: inverse transformation to RH (use instead of -r)
-# -V TARGET_VOL_HUMID: specify target VH
+# -a VOL_HUMID: inverse transformation to RH (use instead of -r)
+# -A TARGET_VOL_HUMID: specify target VH
 
 my %OPT;
-getopts('t:r:eR:M:v:V:', \%OPT);
+getopts('t:r:eR:M:a:A:', \%OPT);
 
 ### Analyze options ###
 my $Temp = $OPT{t} || die $USAGE;
 
-if ($OPT{v}) {
+if ($OPT{a}) {
     # Inverse transformation
-    printf("RH: %.1f %%\n", get_rel_humid($OPT{v}, $Temp));
+    printf("RH: %.1f %%\n", get_rel_humid($OPT{a}, $Temp));
     exit 1;
 }
 
@@ -46,8 +46,8 @@ if ($OPT{R}) {
     eval_target_rh($Temp, $RH, $OPT{R});
 }
 
-if ($OPT{V}) {
-    eval_target_vh($Temp, $VH, $OPT{V});
+if ($OPT{A}) {
+    eval_target_vh($Temp, $VH, $OPT{A});
 }
 
 ################################################################################
