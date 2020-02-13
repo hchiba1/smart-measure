@@ -26,7 +26,7 @@ $ ./humidity.pl -t 22.5 -r 30 -A 11 -V 500
 5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
 +5.01 g/m3 -> 11.0 g/m3, RH=55.1% (+2.50L for 500.0m3)
 ```
-Here, _VH=11_ is considered ideal, and the program calculates how much water is necessary to realize it.
+Here, _VH=11_ is considered ideal, and the program calculates how much water is necessary to realize it in the specified volume of room.
 
 ### Formula
 **Volumetric humidity** (VH) can be obtained by ideal gas law:  
