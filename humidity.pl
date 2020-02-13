@@ -35,8 +35,8 @@ print_vol_humid($VH);
 if ($OPT{e}) {
     my ($Temp_err, $Temp_err_msg) = eval_temperature($Temp);
     my ($RH_err, $RH_err_msg) = eval_rel_humid($RH);
-    print $Temp_err_msg;
     print $RH_err_msg;
+    print $Temp_err_msg;
     printf("range: %.2f - %.2f g/m3\n", 
            get_vol_humid($RH-$RH_err, $Temp-$Temp_err), 
            get_vol_humid($RH+$RH_err, $Temp+$Temp_err));
@@ -108,7 +108,7 @@ sub eval_rel_humid {
     } else {
         $msg .= "too low to measure; ";
     }
-    $msg .= "$percent_error% of error for RH=$rel_humid%: ";
+    $msg .= "$percent_error% of error for RH=$rel_humid%?: ";
     $msg .= $rel_humid-$percent_error;
     $msg .= "-";
     $msg .= $rel_humid+$percent_error;
@@ -133,7 +133,7 @@ sub eval_temperature {
     } else {
         $msg .= "too low to measure; ";
     }
-    $msg .= "$t_error degree of error for Temp=${t}: ";
+    $msg .= "$t_error degree of error for Temp=${t}?: ";
     $msg .= $t-$t_error;
     $msg .= "-";
     $msg .= $t+$t_error;
