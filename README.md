@@ -5,8 +5,10 @@ Volumetric humidity (VH) can be calculated from relative humidity (RH) and tempe
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -r REL_HUMID -t TEMPERATURE
--e: output expected errors
+-A TARGET_VOL_HUMID: specify target VH
 -R TARGET_REL_HUMID: specify target RH
+-V CUBIC_METER: specify volume of room
+-e: output expected errors
 ```
 
 ### Examples
