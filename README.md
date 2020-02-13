@@ -12,8 +12,7 @@ Usage: humidity.pl [options] -r REL_HUMID -t TEMPERATURE
 ### Examples
 ```
 $ ./humidity.pl -t 22.5 -r 30
-5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
-range: 4.714 - 7.402 g/m3
+5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
 ```
 ```
 $ ./humidity.pl -t 22.5 -r 30 -e
