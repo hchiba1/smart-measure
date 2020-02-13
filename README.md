@@ -16,7 +16,7 @@ Usage: humidity.pl [options] -r REL_HUMID -t TEMPERATURE
 $ ./humidity.pl -t 22.5 -r 30
 5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
 ```
-For example, when _VH=11_ is considered target humidity, the program calculates how much water is necessary for the specified volume of room:
+For example if _VH=11_ is considered target humidity, the program calculates how much water is necessary for the specified volume of room:
 ```
 $ ./humidity.pl -t 22.5 -r 30 -A 11 -V 500
 5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
