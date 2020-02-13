@@ -4,11 +4,11 @@ use File::Basename;
 use Getopt::Std;
 my $PROGRAM = basename $0;
 my $USAGE=
-"Usage: $PROGRAM [options] -t TEMPERATURE -r REL_HUMID
--e: output expected errors
--R TARGET_REL_HUMID: specify target RH
+"Usage: $PROGRAM [options] -r REL_HUMID -t TEMPERATURE
 -A TARGET_VOL_HUMID: specify target VH
+-R TARGET_REL_HUMID: specify target RH
 -V CUBIC_METER: specify volume of room
+-e: output expected errors
 ";
 # Hidden options:
 # -a VOL_HUMID: inverse transformation to RH (use instead of -r)
