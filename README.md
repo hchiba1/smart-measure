@@ -16,18 +16,17 @@ $ ./humidity.pl -t 22.5 -r 30
 ```
 ```
 $ ./humidity.pl -t 22.5 -r 30 -e
-5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
-Temp=22.5 (consider 1 degree of error? 21.5-23.5)
-RH=30% (consider 5% of error? 25-35%)
-range: 4.714 - 7.402 g/m3
+5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
+(5% of error for RH=30%?: 25-35%)
+(1 degree of error for Temp=22.5?: 21.5-23.5)
+range: 4.71 - 7.40 g/m3
 ```
 ```
-$ ./humidity.pl -t 22.5 -r 30 -R 55
-5.992 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
-range: 4.714 - 7.402 g/m3
-aim at RH=55? VH: +4.994 g/m3 -> 10.986 g/m3
+$ ./humidity.pl -t 22.5 -r 30 -A 11 -V 500
+5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
++5.01 g/m3 -> 11.0 g/m3, RH=55.1% (+2.50L for 500.0m3)
 ```
-Here, _RH=55%_ is considered ideal, and the program calculates how much water is necessary to realize it.
+Here, _VH=11_ is considered ideal, and the program calculates how much water is necessary to realize it.
 
 ### Formula
 **Volumetric humidity** (VH) can be obtained by ideal gas law:  
