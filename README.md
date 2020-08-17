@@ -2,7 +2,7 @@
 
 ## Volumetric humidity
 Volumetric humidity (VH) can be calculated from relative humidity (RH) and temperature.
-* JavaScript version
+* JavaScript
 ```
 $ ./humidity.js -h
 Usage: humidity [options]
@@ -12,7 +12,7 @@ Options:
   -t, --temp <TEMP>      temperature
   -h, --help             display help for command
 ```
-* Perl version
+* Perl
 ```
 $ ./humidity.pl
 Usage: humidity.pl [options] -r REL_HUMID -t TEMPERATURE
@@ -23,6 +23,10 @@ Usage: humidity.pl [options] -r REL_HUMID -t TEMPERATURE
 ```
 
 ### Examples
+```
+$ ./humidity.js -t 22.5 -r 30
+5.99 g/m3
+```
 ```
 $ ./humidity.pl -t 22.5 -r 30
 5.99 g/m3 - Very dry (5g/m3 -> 50% flu survive, 7g/m3 -> 20% flu survive)
