@@ -6,7 +6,7 @@ const commander = require('commander')
       .parse(process.argv);
 
 const vol_humid = get_vol_humid(commander.temp, commander.rel);
-console.log(vol_humid, 'g/m3');
+console.log(vol_humid.toFixed(2), 'g/m3');
 
 // Functions
 function get_vol_humid(t, rel_humid) {
