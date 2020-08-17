@@ -4,7 +4,7 @@
 Volumetric humidity (VH) can be calculated from relative humidity (RH) and temperature.
 * JavaScript
 ```
-$ ./humidity.js -h
+$ ./humidity.js
 Usage: humidity [options]
 
 Options:
