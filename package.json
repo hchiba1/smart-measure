@@ -1,0 +1,27 @@
+{
+  "name": "smart-measure",
+  "version": "1.0.0",
+  "description": "Smart measure of temperature and humidity",
+  "main": "humidity.js",
+  "dependencies": {
+    "commander": "^6.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hchiba1/smart-measure.git"
+  },
+  "keywords": [
+    "temperature",
+    "humidity"
+  ],
+  "author": "Hirokazu Chiba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hchiba1/smart-measure/issues"
+  },
+  "homepage": "https://github.com/hchiba1/smart-measure#readme"
+}
