@@ -5,8 +5,12 @@ const commander = require('commander')
       .option('-t, --temp <TEMP>', 'temperature', parseFloat)
       .parse(process.argv);
 
-const vol_humid = get_vol_humid(commander.temp, commander.rel);
-console.log(vol_humid.toFixed(2), 'g/m3');
+if (commander.temp && commander.rel) {
+  const vol_humid = get_vol_humid(commander.temp, commander.rel);
+  console.log(vol_humid.toFixed(2), 'g/m3');
+} else {
+  commander.help()
+}
 
 // Functions
 function get_vol_humid(t, rel_humid) {
