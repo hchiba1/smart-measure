@@ -3,11 +3,16 @@
 const commander = require('commander')
       .option('-r, --rel <REL_HUMID>', 'relative humidity', parseFloat)
       .option('-t, --temp <TEMP>', 'temperature', parseFloat)
+      .option('-v, --verbose', 'verbose')
       .parse(process.argv);
 
 if (commander.temp && commander.rel) {
   const vol_humid = get_vol_humid(commander.temp, commander.rel);
-  console.log(vol_humid.toFixed(2), 'g/m3');
+  if (commander.verbose) {
+    console.log(vol_humid, 'g/m3');
+  } else {
+    console.log(vol_humid.toFixed(2), 'g/m3');
+  }
 } else {
   commander.help()
 }
