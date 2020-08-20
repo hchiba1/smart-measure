@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 import time
 from datetime import datetime
+import argparse
 from CO2Meter.CO2Meter import *
 import requests
 
-sensor = CO2Meter("/dev/hidraw5")
+parser = argparse.ArgumentParser(description='CO2Monitor')
+parser.add_argument('-d', '--dev', default=0, type=int, help='devise number')
+args = parser.parse_args()
+
+dev = f"/dev/hidraw{args.dev}"
+sensor = CO2Meter(dev)
 
 while True:
     sensor_data = sensor.get_data()
