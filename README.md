@@ -1,9 +1,9 @@
 
 ## Temperature-humidity index
-Temperature-humidity index (THI) is also known as discomfort index(DI):
-_DI = 0.81T + 0.01H(0.99T - 14.3) + 46.3_
+Temperature-humidity index (THI) is also known as discomfort index(DI):  
+_DI = 0.81T + 0.01H(0.99T - 14.3) + 46.3_  
 The index is essentially an effective temperature based on air temperature and humidity.
-
+The water vapor concentration of the air is important since it can drastically reduce the ability of the animal to use evaporative heat loss through the skin and lungs.
 ```
 usage: temperature_humidity_index.py [-h] [-t TEMPERATURE] [-r HUMIDITY] [-v]
 
