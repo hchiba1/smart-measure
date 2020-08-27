@@ -14,6 +14,7 @@ if not args.temperature or not args.humidity:
 t = float(args.temperature)
 h = float(args.humidity)
 di = 0.81*t + 0.01*h*(0.99*t-14.3) + 46.3
+# or THI =0.8*T + RH*(T-14.4) + 46.4
 
 if args.verbose:
     print('0.81T =', 0.81*t, sep="\t")
