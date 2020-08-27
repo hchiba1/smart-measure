@@ -1,4 +1,27 @@
-# smart-measure
+
+## Temperature-humidity index
+Temperature-humidity index (THI) is also known as discomfort index(DI):
+_DI = 0.81T + 0.01H(0.99T - 14.3) + 46.3_
+The index is essentially an effective temperature based on air temperature and humidity.
+
+```
+usage: temperature_humidity_index.py [-h] [-t TEMPERATURE] [-r HUMIDITY] [-v]
+
+Calculate temperature-humidity index
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPERATURE, --temperature TEMPERATURE
+                        Celsius temperature
+  -r HUMIDITY, --humidity HUMIDITY
+                        relative humidity
+  -v, --verbose         verbose
+```
+### Examples
+```
+$ ./temperature_humidity_index.py -t 27.5 -r 70
+77.6225: Bit Hot
+```
 
 ## Volumetric humidity
 Volumetric humidity (VH) can be calculated from relative humidity (RH) and temperature.
@@ -80,23 +103,3 @@ Temp
 - _Temp > 50, Temp < 0_: more?
 
 Accordingly, the obtained VH may also have error to some extent.
-
-## Temperature humidity index
-```
-usage: temperature_humidity_index.py [-h] [-t TEMPERATURE] [-r HUMIDITY] [-v]
-
-Calculate temperature-humidity index
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -t TEMPERATURE, --temperature TEMPERATURE
-                        Celsius temperature
-  -r HUMIDITY, --humidity HUMIDITY
-                        relative humidity
-  -v, --verbose         verbose
-```
-### Examples
-```
-$ ./temperature_humidity_index.py -t 27.5 -r 70
-77.6225: Bit Hot
-```
