@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import time
 from datetime import datetime
 import argparse
@@ -22,5 +23,8 @@ while True:
     temp = sensor_data['temperature']
     data = [{'created': now, 'd6': co2, 'd7': temp}]
     print(data, flush=True)
-    r = requests.post('https://ambidata.io/api/v2/channels/25097/dataarray', json={'writeKey': 'f636e04ddb53c434', 'data': data})
+    try:
+        r = requests.post('https://ambidata.io/api/v2/channels/25097/dataarray', json={'writeKey': 'f636e04ddb53c434', 'data': data})
+    except requests.exceptions.ConnectionError as e:
+        print(e, file=sys.stderr)
     time.sleep(300)
