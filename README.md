@@ -81,4 +81,22 @@ Temp
 
 Accordingly, the obtained VH may also have error to some extent.
 
-# Temperature humidity index
+## Temperature humidity index
+```
+usage: temperature_humidity_index.py [-h] [-t TEMPERATURE] [-r HUMIDITY] [-v]
+
+Calculate temperature-humidity index
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TEMPERATURE, --temperature TEMPERATURE
+                        Celsius temperature
+  -r HUMIDITY, --humidity HUMIDITY
+                        relative humidity
+  -v, --verbose         verbose
+```
+### Examples
+```
+$ ./temperature_humidity_index.py -t 27.5 -r 70
+77.6225: Bit Hot
+```
