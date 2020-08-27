@@ -10,6 +10,7 @@ The water vapor concentration of the air is important since it can drastically r
 * DI >= 77 -> 65% of Japanese people feel discomfort
 * DI >= 75 -> 9% of Japanese people feel discomfort
 
+### Usage
 ```
 usage: temperature_humidity_index.py [-h] [-t TEMPERATURE] [-r HUMIDITY] [-v]
 
@@ -31,6 +32,8 @@ $ ./temperature_humidity_index.py -t 27.5 -r 70
 
 ## Volumetric humidity
 Volumetric humidity (VH) can be calculated from relative humidity (RH) and temperature.
+
+### Usage
 * JavaScript
 ```
 $ ./humidity.js
