@@ -15,12 +15,14 @@ t = float(args.temperature)
 h = float(args.humidity)
 di = 0.81*t + 0.01*h*(0.99*t-14.3) + 46.3
 # or THI =0.8*T + RH*(T-14.4) + 46.4
+di2 = 0.8*t + 0.01*h*(t-14.4) + 46.4
 
 if args.verbose:
     print('0.81T =', 0.81*t, sep="\t")
     print('0.01H(0.99T-14.3) =', (0.99*t-14.3)*h*0.01)
     print('0.81T + 0.01H(0.99T-14.3) =', 0.81*t + (0.99*t-14.3)*h*0.01)
     print('0.81T + 0.01H(0.99T-14.3) + 46.3 =', di)
+    print('0.8T + RH(T-14.4) + 46.4 =', di2)
 else:
     print(di, end=': ')
 
