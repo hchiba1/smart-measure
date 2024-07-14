@@ -8,7 +8,6 @@
     </head>
     <body>
         <div class="container">
-            <h1>不快指数</h1>
             <div class="slider-container">
                 <button id="tempDecrease"><</button>
                 <label for="temperature">温度: <span id="tempValue">28.0</span>℃</label>
@@ -21,8 +20,9 @@
                 <button id="humIncrease">></button>
                 <input type="range" id="humidity" min="40" max="80" value="50">
             </div>
+            <p>不快指数 = 46.3 + 0.81 温度 + (0.99 温度 - 14.3) 湿度</p>
             <div class="result-container">
-                <p>不快指数: <span id="discomfortIndex">--</span></p>
+                <p>= <span id="discomfortIndex">--</span></p>
             </div>
         </div>
         <script src="script.js"></script>
