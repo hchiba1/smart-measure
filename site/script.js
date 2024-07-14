@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateDiscomfortIndex() {
-        const temp = parseInt(tempSlider.value);
+        const temp = parseFloat(tempSlider.value);
         const hum = parseInt(humSlider.value);
         const index = calculateDiscomfortIndex(temp, hum);
-        tempValue.textContent = temp;
+        tempValue.textContent = temp.toFixed(1);
         humValue.textContent = hum;
         discomfortIndex.textContent = index.toFixed(2);
     }
