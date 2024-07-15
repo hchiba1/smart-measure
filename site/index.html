@@ -21,7 +21,16 @@
                 &emsp;
                 <label for="temperature" style="font-size: 1.2em">温度:</label>
                 <span id="tempValue"  style="font-size: 1.3em">28.0</span>℃
-                <input type="range" id="temperature" min="25" max="31" step="0.1" value="28.0">
+                <input type="range" id="temperature" min="25" max="31" step="0.1" value="28.0" list="tickmarksTemp">
+                <datalist id="tickmarksTemp">
+                    <option value="25"></option>
+                    <option value="26"></option>
+                    <option value="27"></option>
+                    <option value="28"></option>
+                    <option value="29"></option>
+                    <option value="30"></option>
+                    <option value="31"></option>
+                </datalist>
             </div>
             <div class="slider-container">
                 &emsp; &emsp;
@@ -35,7 +44,18 @@
                 <br>
                 <label for="humidity" style="font-size: 1.2em">湿度:</label>
                 <span id="humValue" style="font-size: 1.3em">50</span>%
-                <input type="range" id="humidity" min="40" max="80" value="50">
+                <input type="range" id="humidity" min="40" max="80" value="50" list="tickmarksHum">
+                <datalist id="tickmarksHum">
+                    <option value="40"></option>
+                    <option value="45"></option>
+                    <option value="50"></option>
+                    <option value="55"></option>
+                    <option value="60"></option>
+                    <option value="65"></option>
+                    <option value="70"></option>
+                    <option value="75"></option>
+                    <option value="80"></option>
+                </datalist>
             </div>
             <p>不快指数 = 46.3 + 0.81 温度 + (0.99 温度 - 14.3) 湿度</p>
             <div class="result-container">
