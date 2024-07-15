@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const humDecreaseBtn = document.getElementById('humDecrease');
     const humIncreaseBtn = document.getElementById('humIncrease');
 
+    const tempDecrease1Btn = document.getElementById('tempDecrease1');
+    const tempIncrease1Btn = document.getElementById('tempIncrease1');
+    const humDecrease10Btn = document.getElementById('humDecrease10');
+    const humIncrease10Btn = document.getElementById('humIncrease10');
+
     function calculateDiscomfortIndex(temp, hum) {
         return 0.81 * temp + 0.01 * hum * (0.99 * temp - 14.3) + 46.3;
     }
@@ -37,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     tempIncreaseBtn.addEventListener('click', () => changeSliderValue(tempSlider, 0.1));
     humDecreaseBtn.addEventListener('click', () => changeSliderValue(humSlider, -1));
     humIncreaseBtn.addEventListener('click', () => changeSliderValue(humSlider, 1));
+
+    tempDecrease1Btn.addEventListener('click', () => changeSliderValue(tempSlider, -1));
+    tempIncrease1Btn.addEventListener('click', () => changeSliderValue(tempSlider, 1));
+    humDecrease10Btn.addEventListener('click', () => changeSliderValue(humSlider, -10));
+    humIncrease10Btn.addEventListener('click', () => changeSliderValue(humSlider, 10));
 
     // Initialize default values
     updateDiscomfortIndex();
