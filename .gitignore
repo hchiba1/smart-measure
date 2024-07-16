@@ -1,5 +1,3 @@
 node_modules/
-/co2data
-/err
-/dev
+/tmp/
 __pycache__/
